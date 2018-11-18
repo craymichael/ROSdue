@@ -31,6 +31,10 @@ def subscriber_handler(topic):
     return handler
 
 def main():
+    import sys
+    def _is_good(_s):
+        return not (_s.startswith('__name:=') or _s.startswith('__log:='))
+    sys.argv = [s for s in sys.argv if _is_good(s)]
 
     # Input argument parse
     parser = argparse.ArgumentParser(description='ROS node for rosdue')
